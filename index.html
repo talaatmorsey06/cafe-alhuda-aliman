@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>كوفي شوب الهدى والإيمان</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<!-- Login -->
+<div id="login" class="auth">
+  <h1>☕ كوفي شوب الهدى والإيمان</h1>
+  <p class="sub">تسجيل الدخول إلى لوحة الإدارة</p>
+  <label>اسم المستخدم</label><input id="lu" autocomplete="username">
+  <label>كلمة المرور</label><input id="lp" type="password" autocomplete="current-password">
+  <button class="full" id="lbtn">دخول</button>
+  <div class="msg" id="lm"></div>
+  <div class="links"><a data-go="reset">نسيت كلمة المرور؟</a><a data-go="signup">إضافة حساب جديد</a></div>
+</div>
+
+<!-- Signup -->
+<div id="signup" class="auth hide">
+  <h1>إضافة حساب جديد</h1>
+  <p class="sub">تُنشأ الحسابات الجديدة بصلاحية موظف، ويستطيع المدير تغييرها</p>
+  <label>الاسم الكامل</label><input id="sn">
+  <label>اسم المستخدم</label><input id="su">
+  <label>كلمة المرور (6 أحرف على الأقل)</label><input id="sp" type="password">
+  <label>تأكيد كلمة المرور</label><input id="sp2" type="password">
+  <label>سؤال الأمان (لاستعادة كلمة المرور)</label>
+  <select id="sq"><option>ما اسم مدينتك؟</option><option>ما اسم أول مدرسة لك؟</option><option>ما اسم صديق طفولتك؟</option></select>
+  <label>الإجابة</label><input id="sa">
+  <button class="full" id="sbtn">إنشاء الحساب</button>
+  <div class="msg" id="sm"></div>
+  <div class="links"><a data-go="login">العودة لتسجيل الدخول</a></div>
+</div>
+
+<!-- Reset -->
+<div id="reset" class="auth hide">
+  <h1>إعادة كلمة المرور</h1>
+  <p class="sub">أدخل اسم المستخدم ثم أجب عن سؤال الأمان</p>
+  <label>اسم المستخدم</label><input id="ru">
+  <div id="rstep2" class="hide">
+    <label id="rq"></label><input id="ra">
+    <label>كلمة المرور الجديدة</label><input id="rp" type="password">
+    <label>تأكيد كلمة المرور</label><input id="rp2" type="password">
+  </div>
+  <button class="full" id="rbtn">متابعة</button>
+  <div class="msg" id="rm"></div>
+  <div class="links"><a data-go="login">العودة لتسجيل الدخول</a></div>
+</div>
+
+<!-- App -->
+<div id="app" class="hide">
+  <header>
+    <div><h1>☕ كوفي شوب الهدى والإيمان</h1><div class="sub" id="who" style="margin:0"></div></div>
+    <button class="sec" id="out">تسجيل الخروج</button>
+  </header>
+  <nav id="tabs">
+    <button data-t="dash" class="on">الرئيسية</button>
+    <button data-t="menu">قائمة المشروبات والأصناف</button>
+    <button data-t="orders">الطلبات</button>
+    <button data-t="drawer">🗄️ الدرج</button>
+    <button data-t="sales" class="mgr">المبيعات</button>
+    <button data-t="users" class="mgr">المستخدمون</button>
+  </nav>
+
+  <section id="t-dash">
+    <div class="grid">
+      <div class="stat">طلبات اليوم<b id="d1">0</b></div>
+      <div class="stat">مبيعات اليوم<b id="d2">0</b></div>
+      <div class="stat">إجمالي المبيعات<b id="d3">0</b></div>
+      <div class="stat">عدد الأصناف<b id="d4">0</b></div>
+    </div>
+  </section>
+
+  <section id="t-menu" class="hide">
+    <div class="card mgr"><h2>إضافة صنف</h2>
+      <div class="row">
+        <div><label>الاسم</label><input id="mn"></div>
+        <div><label>القسم</label><select id="mc"><option>مشروبات ساخنة</option><option>مشروبات باردة</option><option>حلويات</option><option>وجبات خفيفة</option></select></div>
+        <div><label>السعر</label><input id="mpz" type="number" min="0" step="0.5"></div>
+        <button id="madd">إضافة</button>
+      </div>
+    </div>
+    <div class="card tw"><table><thead><tr><th>الصنف</th><th>القسم</th><th>السعر</th><th></th></tr></thead><tbody id="mt"></tbody></table></div>
+  </section>
+
+  <section id="t-orders" class="hide">
+    <div class="card"><h2>طلب جديد</h2>
+      <div class="row">
+        <div><label>رقم الطاولة</label><input id="ot" type="number" min="1"></div>
+        <div><label>الصنف</label><select id="oi"></select></div>
+        <div><label>الكمية</label><input id="oq" type="number" min="1" value="1"></div>
+        <div><label>طريقة الدفع</label><select id="op"><option value="cash">كاش</option><option value="visa">فيزا</option></select></div>
+        <div id="ocashw"><label>المبلغ المستلم (اختياري)</label><input id="orc" type="number" min="0" step="0.5"></div>
+        <div id="ovisaw" class="hide"><label>رقم إيصال الماكينة</label><input id="orf" placeholder="لا تُدخل رقم البطاقة"></div>
+        <button id="oadd">تسجيل الطلب</button>
+      </div>
+      <div class="msg" id="om"></div>
+    </div>
+    <div class="card tw"><table><thead><tr><th>#</th><th>الطاولة</th><th>الصنف</th><th>الكمية</th><th>الإجمالي</th><th>الدفع</th><th>الوقت</th><th></th></tr></thead><tbody id="ot-b"></tbody></table></div>
+  </section>
+
+  <section id="t-drawer" class="hide">
+    <div class="card"><h2>🗄️ درج النقدية</h2>
+      <p class="sub">كل عملية فتح تُسجَّل باسم المستخدم والوقت والسبب. الفتح الفعلي للدرج يحتاج ربطه بطابعة الإيصالات.</p>
+      <div class="row">
+        <div><label>سبب الفتح</label><select id="dr"><option>بيع نقدي</option><option>إعطاء باقي (فكة)</option><option>إيداع نقدية</option><option>سحب نقدية</option><option>أخرى</option></select></div>
+        <button id="dopen">فتح الدرج</button>
+        <button class="sec" id="dclose">إغلاق الدرج</button>
+      </div>
+      <div class="drawer" id="dstate">🔒 الدرج مغلق</div>
+      <div class="msg" id="dm"></div>
+    </div>
+    <div class="grid">
+      <div class="stat">نقدية اليوم المتوقعة<b id="dcash">0</b></div>
+      <div class="stat">مرات فتح الدرج اليوم<b id="dcnt">0</b></div>
+    </div>
+    <div class="card tw"><h2>سجل فتح الدرج</h2><table><thead><tr><th>الوقت</th><th>المستخدم</th><th>الصلاحية</th><th>السبب</th></tr></thead><tbody id="dt"></tbody></table></div>
+  </section>
+
+  <section id="t-users" class="hide">
+    <div class="card tw"><h2>المستخدمون والصلاحيات</h2><table><thead><tr><th>الاسم</th><th>اسم المستخدم</th><th>الصلاحية</th></tr></thead><tbody id="ut"></tbody></table></div>
+  </section>
+
+  <section id="t-sales" class="hide">
+    <div class="grid">
+      <div class="stat">عدد الطلبات<b id="s1">0</b></div>
+      <div class="stat">إجمالي المبيعات<b id="s2">0</b></div>
+      <div class="stat">متوسط الطلب<b id="s3">0</b></div>
+      <div class="stat">مبيعات كاش<b id="s4">0</b></div>
+      <div class="stat">مبيعات فيزا<b id="s5">0</b></div>
+    </div>
+    <div class="card tw"><h2>المبيعات حسب الصنف</h2><table><thead><tr><th>الصنف</th><th>الكمية</th><th>الإيراد</th></tr></thead><tbody id="st"></tbody></table></div>
+  </section>
+</div>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>
